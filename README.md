@@ -2,7 +2,7 @@
 
 Github Artifact Fetcher is a web app written in Go reacting to Github Actions Webhooks and fetching artifacts produced by the received Action run.
 
-This project supports `distributhor/workflow-webhook@v2` action.
+This project supports [distributhor/workflow-webhook@v2](https://github.com/marketplace/actions/workflow-webhook-action) action.
 Take a look at example configuration for your webhook step
 
 ```yaml
