@@ -8,8 +8,7 @@ Sometimes you just want to setup a CI/CD for your pet-project and re-deploy auto
 
 #### Github Actions integration
 
-This project supports `distributhor/workflow-webhook@v2` action.
-Take a look at example configuration for your webhook step
+This project supports [distributhor/workflow-webhook@v2](https://github.com/marketplace/actions/workflow-webhook-action) action. Take a look at an example configuration for your webhook step:
 
 ```yaml
 - name: fetcher webhook
