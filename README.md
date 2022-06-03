@@ -2,6 +2,12 @@
 
 Github Artifact Fetcher is a web app written in Go reacting to Github Actions Webhooks and fetching artifacts produced by the received Action run.
 
+### Why?
+
+Sometimes you just want to setup a CI/CD for your pet-project and re-deploy automatically on push to master. There are ways to do it. I don't use docker for a couple of reasons and I don't push artifacts via ssh to prod machines (for a couple of other reasons). I don't have cloud accounts to integrate with fancy cloud actions and kubernetes for a project like that would be a bit of an overhead. That's how I came up with this fetcher. It's fun and it's free.
+
+#### Github Actions integration
+
 This project supports `distributhor/workflow-webhook@v2` action.
 Take a look at example configuration for your webhook step
 
@@ -25,16 +31,16 @@ When your action reaches the Webhook step it sends a payload to fetcher, e.g.
 
 ```json
 {
-  "event":"push",
-  "repository":"vatsimnerd/simwatch",
-  "commit":"93cc5f9ed2844237c6c169a3ca3761a726a4b930",
-  "ref":"refs/heads/gh-actions",
-  "head":"",
-  "workflow":"Simwatch",
-  "data":{
-    "run_id":2431090188
+  "event": "push",
+  "repository": "vatsimnerd/simwatch",
+  "commit": "93cc5f9ed2844237c6c169a3ca3761a726a4b930",
+  "ref": "refs/heads/gh-actions",
+  "head": "",
+  "workflow": "Simwatch",
+  "data": {
+    "run_id": 2431090188
   },
-  "requestID":"72efa85b-811d-4c05-8101-2c715bcd43a8"
+  "requestID": "72efa85b-811d-4c05-8101-2c715bcd43a8"
 }
 ```
 
