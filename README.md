@@ -5,7 +5,7 @@ Github Artifact Fetcher is a web app written in Go reacting to Github Actions We
 This project supports `distributhor/workflow-webhook@v2` action.
 Take a look at example configuration for your webhook step
 
-```(yaml)
+```yaml
 - name: fetcher webhook
   uses: distributhor/workflow-webhook@v2
   env:
@@ -23,7 +23,7 @@ Fetcher starts a web server on a corresponding host:port (see Configuration sect
 
 When your action reaches the Webhook step it sends a payload to fetcher, e.g.
 
-```(json)
+```json
 {
   "event":"push",
   "repository":"vatsimnerd/simwatch",
@@ -54,7 +54,7 @@ GITHUB_ARTIFACT_DOWNLOAD_URL
 
 Configuration is quite self-explanatory
 
-```(yaml)
+```yaml
 addr: localhost:5000
 endpoint: /receive
 artifacts:
