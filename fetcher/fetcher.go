@@ -179,7 +179,7 @@ func (f *Fetcher) fetch(url string, path string, token string) error {
 		"url":  url,
 	})
 
-	l.Debug("creating request")
+	l.WithField("url", url).Debug("creating request")
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
@@ -280,6 +280,7 @@ func (f *Fetcher) listArtifacts(repo string, runID int, token string) (*GithubAr
 	owner, repo := tokens[0], tokens[1]
 
 	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/actions/runs/%d/artifacts", owner, repo, runID)
+	log.WithField("url", url).Debug("requesting artifacts list")
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -296,6 +297,7 @@ func (f *Fetcher) listArtifacts(repo string, runID int, token string) (*GithubAr
 	if err != nil {
 		return nil, err
 	}
+	log.WithField("response", string(data)).Debug("got response from github")
 
 	var ghr GithubArtifactList
 	err = json.Unmarshal(data, &ghr)

@@ -36,7 +36,7 @@ type (
 
 func (ge GithubEvent) String() string {
 	return fmt.Sprintf("<GithubEvent event=\"%s\" repo=\"%s\" commit=\"%s\""+
-		" ref=\"%s\" head=\"%s\" workflow=\"%s\" requestID=\"%s\" runID=\"%d\"",
+		" ref=\"%s\" head=\"%s\" workflow=\"%s\" requestID=\"%s\" runID=%d",
 		ge.Event,
 		ge.Repository,
 		ge.Commit,
