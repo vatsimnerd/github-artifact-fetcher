@@ -16,7 +16,7 @@ var (
 
 func main() {
 
-	cfg, err := config.Read("receiver.yaml")
+	cfg, err := config.Read("fetcher.yaml")
 	if err != nil {
 		log.WithError(err).Fatal("error reading config")
 	}

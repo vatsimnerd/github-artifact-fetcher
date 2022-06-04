@@ -34,7 +34,7 @@ type Config struct {
 func Read(filename string) (*Config, error) {
 	viper.SetConfigFile(filename)
 	viper.AddConfigPath(".")
-	viper.AddConfigPath("/etc/github-artifact-receiver")
+	viper.AddConfigPath("/etc/github-artifact-fetcher")
 
 	viper.SetDefault("addr", "localhost:9895")
 	viper.SetDefault("endpoint", "/receive")
