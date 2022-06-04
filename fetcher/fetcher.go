@@ -50,6 +50,11 @@ type (
 	}
 )
 
+const (
+	maxRetries    = 5
+	retryCooldown = 3 * time.Second
+)
+
 var (
 	log = logrus.WithField("module", "fetcher")
 )
@@ -108,11 +113,28 @@ func (f *Fetcher) fetchArtifact(runID int, acfg config.ArtifactConfig) {
 		"artifact": acfg.Name,
 	})
 
-	// fetch
-	l.Info("requesting the list of artifacts for workflow run id")
-	al, err := f.listArtifacts(acfg.Repo, runID, acfg.GithubToken)
-	if err != nil {
-		log.WithError(err).Error("error listing artifacts")
+	var al *GithubArtifactList
+	var err error
+	retries := maxRetries
+
+	for retries > 0 {
+		// fetch
+		l.WithField("retries_left", retries).Info("requesting the list of artifacts for workflow run id")
+		al, err = f.listArtifacts(acfg.Repo, runID, acfg.GithubToken)
+		if err != nil {
+			l.WithError(err).Error("error listing artifacts")
+		} else if len(al.Artifacts) > 0 {
+			break
+		} else {
+			l.Info("0 artifacts listed, need to retry")
+		}
+		l.Debug("retry cooldown")
+		time.Sleep(retryCooldown)
+		retries--
+	}
+
+	if al == nil {
+		log.Error("error listing artifacts, no retries left, giving up")
 		return
 	}
 
