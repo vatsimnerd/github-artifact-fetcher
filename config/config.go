@@ -32,7 +32,7 @@ type Config struct {
 }
 
 func Read(filename string) (*Config, error) {
-	viper.SetConfigFile(filename)
+	viper.SetConfigName(filename)
 	viper.AddConfigPath(".")
 	viper.AddConfigPath("/etc/github-artifact-fetcher")
 
