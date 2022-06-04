@@ -31,5 +31,5 @@ jobs:
       - name: store binary
         uses: actions/upload-artifact@v3
         with:
-          name: github-artifact-fetcher.zip
+          name: github-artifact-fetcher
           path: github-artifact-fetcher
