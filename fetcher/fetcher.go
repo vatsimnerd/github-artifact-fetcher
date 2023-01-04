@@ -51,8 +51,8 @@ type (
 )
 
 const (
-	maxRetries    = 5
-	retryCooldown = 3 * time.Second
+	maxRetries    = 12
+	retryCooldown = 8 * time.Second
 )
 
 var (
